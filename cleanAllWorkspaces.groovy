@@ -1,4 +1,5 @@
 // Check if a slave has < 10 GB of free space, wipe out workspaces if it does
+// started from: https://gist.github.com/EvilBeaver/35ebded526fb53ecb9716889c1de11df
 import hudson.model.*;
 import hudson.util.*;
 import jenkins.model.*;
