@@ -23,14 +23,21 @@ for (c in allCredentials) {
 	def out = new StringBuffer()
 	def pw = c.hasProperty('password') ? c.password : 'no pw'
   	def user = c.hasProperty('username') ? c.username : 'no username'
+	def secret = c.hasProperty('secret') ? c.secret : 'no secret'
+  	def scope = c.hasProperty('scope') ? c.scope : 'scope'
+//  	println c.metaClass.methods*.name.sort().unique()
   	def id = c.id.padRight(22)
   	out << id
   	out << " | "
   	out << user.padLeft(18)
   	out << " : "
   	out << pw.toString().padRight(34)
+  	out << " "
+	out << "(${secret.toString()})"
 	out << " -- "
   	out << c.description
+  	out << " "
+    out << c.scope
 //   	println(id + " -- " + c.description + " | " + user + " : " + pw)
   	println out.toString()
 }
