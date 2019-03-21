@@ -12,11 +12,13 @@ for (theUrl in URLlist){
        //println "failure: " + e
        failedList = failedList + e.toString() + "\n" 
     }
+    Thread.sleep(3000);
 }
 println ("the following urls were successful: " + successList)
 println ("the following urls failed: " + failedList)
 if (failedList != "\n"){
-    build job: 'slack-send', propagate: false, parameters: [[$class: 'StringParameterValue', name: 'room', value: 'CICDJ_ALERT'], [$class: 'StringParameterValue', name: 'messagetypes', value: 'NOTIFICATION'], [$class: 'StringParameterValue', name: 'messagetext', value: 'One or more Jenkins masters have failed an http check']]
+    build job: 'Alert-CICD-Team', propagate: false, parameters: [[$class: 'StringParameterValue', name: 'room', value: 'CICDJ_ALERT'], [$class: 'StringParameterValue', name: 'messagetypes', value: 'NOTIFICATION'], [$class: 'StringParameterValue', name: 'messagetext', value: 'One or more Jenkins masters have failed an http check']]
+    build job: 'Alert-Email', propagate: false
     throw new MyException("Url checks failed") 
 } 
 
